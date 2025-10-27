@@ -12,7 +12,7 @@ const randomAPIURL = "https://www.themealdb.com/api/json/v1/1/random.php";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Recipe[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
@@ -82,7 +82,7 @@ export default function Home() {
       )
     );
     if (results.length > 0) {
-      setResults([]); 
+      setResults([]);
     }
   };
 
@@ -97,7 +97,7 @@ export default function Home() {
 
       // Handle case where API returns null or no meals
       if (!data.meals) {
-        setError(`No random recip-e found. Please try again.`);
+        setError(`No random recipe found. Please try again.`);
         return;
       }
 
